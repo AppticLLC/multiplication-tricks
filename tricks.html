@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=.1" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./css/main.css" />
+    <link rel="stylesheet" type="text/css" href="./css/back.css" />
+    <title>Multiplication Tricks</title>
+</head>
+<body onload="checkNum()">
+    <script>
+    function checkNum() {
+        var url = new URL(window.location.href);
+        var c = url.searchParams.get("num");
+        if(c) {
+            openPop(c);
+        }
+    }
+
+    function closePop() {
+        $("#backdrop").fadeOut();
+        $("#popup").fadeOut();
+        for(i = 1; i < 9; i++) $("#popupContent" + i).fadeOut();
+    }
+
+    function openPop(number) {
+        if(1 <= number <= 8) {
+            $("#popupContent" + number).fadeIn();
+            $("#backdrop").fadeIn();
+            $("#popup").fadeIn();
+        }
+    }
+    </script>
+    <div class="wrap" id="headerWrap">
+        <div class="hCenter" id="header">
+            <h1><a href="./" style="color:black;text-decoration:none;">Multiplicity</a></h1> </div>
+    </div>
+    <div id="contentWrap">
+        <div class="hCenter" id="contentBorder">
+            <div id="content">
+                <h2>Multiplication tricks</h2> <a href="./play.html" style="text-decoration:none;color:blue;">Play the game.</a>
+                <ul>
+                    <li id="modulus"><a onclick="openPop(1)" href="#!" style="text-decoration:none;color:blue;">Both even or both odd</a></li>
+                    <li id="hundred"><a onclick="openPop(2)" href="#!" style="text-decoration:none;color:blue;">One number divides into one hundred (ex. 2, 4, 5, 10, 20, 25, 50)</a></li>
+                    <li id="divide"><a onclick="openPop(3)" href="#!" style="text-decoration:none;color:blue;">Numbers that divide into each other (ex. 13 and 26, 12 and 36, 15 and 60, etc.)</a></li>
+                    <li id="within"><a onclick="openPop(4)" href="#!" style="text-decoration:none;color:blue;">Numbers close to each other - specifically, numbers that have a difference of 2 or less. (ex. 32 and 33, 32 and 34, 23 and 24, 23 and 25)</a></li>
+                    <li id="squares"><a onclick="openPop(5)" href="#!" style="text-decoration:none;color:blue;">Squares</a></li>
+                    <li id="tensquares"><a onclick="openPop(6)" href="#!" style="text-decoration:none;color:blue;">Squares that are one number away from the nearest ten (ex. 39<sup>2</sup>, 51<sup>2</sup>, 41<sup>2</sup>)</a></li>
+                    <li id="add"><a onclick="openPop(7)" href="#!" style="text-decoration:none;color:blue;">One number ends in 1, 2, 8 or 9</a></li>
+                    <li id="zero"><a onclick="openPop(8)" href="#!" style="text-decoration:none;color:blue;">Multiples of 10</a></li>
+                </ul>
+                <p>&copy; 2013 <a href="https://www.neelsomani.com" style="color:black;text-decoration:none;">Neel Somani</a></p>
+            </div>
+        </div>
+    </div>
+    <div id="backdrop" onclick="closePop()"></div>
+    <div style="text-align:center;">
+        <div id="popup">
+            <div id="popupContent1" style="display:none;">
+                <h3>Numbers that are both even or both odd</h3>
+                <p>A and B are two even or odd numbers.</p>
+                <p>Solve for C, which is the average of A and B (i.e., (A + B) / 2). D is the difference between the C and A (i.e., A - C or equivalently C - B since C is the average of A and B).</p>
+                <p>Recall the equation (A - B)(A + B) = A<sup>2</sup> - B<sup>2</sup></p>
+                <p>If C + D = A and C - D = B. A * B = (C + D)(C - D) = C<sup>2</sup> - D<sup>2</sup>.</p>
+                <p>In English, this means that the average of A and B squared minus (A - the average) squared equals A * B. This is easier done than said.</p>
+                <p>For example, 35 * 45 is equivalent to 40<sup>2</sup> - 5<sup>2</sup></p>
+                <p>24 * 28 = 26<sup>2</sup> - 2<sup>2</sup></p>
+                <p>59 * 61 = 60<sup>2</sup> - 1<sup>2</sup></p>
+            </div>
+            <div id="popupContent2" style="display:none;">
+                <h3>Numbers that divide into one hundred (ex. 2, 4, 5, 10, 20, 25, 50)</h3>
+                <p>A*B = (A*100) * (B/100).</p>
+                <p>Notice that on the right side of the equation above, the two 100s can cancel each other out. (100/100 = 1)</p>
+                <p>B is a number that divides into 100 with no remainder (ex. 2, 4, 5, 10, 20, 25, 50). A is any number.</p>
+                <p>Multiply A*100. Multiply your answer by B/100. Since you have both multiplied and divided by 100, the answer is equivalent to A*B.</p>
+                <p>For example: <span style="color:red;">B = 25</span>, <span style="color:red;">A = 84</span></p>
+                <p>84*25 = (84*100) * (25/100) = 8400/4 = <span style="color:red;">2100</span>.</p>
+            </div>
+            <div id="popupContent3" style="display:none;">
+                <h3>Numbers that divide into each other</h3>
+                <p>For the equation below, C = A/B</p>
+                <p>A*B = B<sup>2</sup> * C.</p>
+                <p>Example 1: <span style="color:red;">A = 26</span>, <span style="color:red;">B = 13</span></p>
+                <p>C = A/B, therefore <span style="color:red;">C = 2</span></p>
+                <p>A = C * B</p>
+                <p><span style="color:purple;">26 = 2 * 13</span></p>
+                <p><span style="color:purple;">26</span> * <span style="color:blue;">13</span> = <span style="color:purple;">2 * 13</span> * <span style="color:blue;">13</span></p>
+                <p>26 * 13 = 2 * 13<sup>2</sup></p>
+                <p><span style="color:red;">Answer: 338</span></p>
+                <p>A * B = C * B<sup>2</sup></p>
+                <p>Example 2: </p>
+                <p><span style="color:red;">A = 36, B = 12</span></p>
+                <p>C = A/B, therefore <span style="color:red;">C = 3</span></p>
+                <p>A = C * B</p>
+                <p><span style="color:purple;">36 = 3 * 12</span></p>
+                <p><span style="color:purple;">36</span> * <span style="color:blue;">12</span> = <span style="color:purple;">3 * 12</span> * <span style="color:blue;">12</span></p>
+                <p>36 * 12 = 3 * 12<sup>2</sup></p>
+                <p><span style="color:red;">Answer: 432</span></p>
+            </div>
+            <div id="popupContent4" style="display:none;">
+                <h3>Numbers close to each other - specifically, numbers that have a difference of 2 or less. (examples: 32 and 33, 32 and 34, 23 and 24, 23 and 25)</h3>
+                <p style="font-weight:bold;">If the numbers have a difference of 1:
+                    <p>If A = B + 1 then A * B = (B + 1) * B = B<sup>2</sup> + B.</p>
+                    <p>For example, B = 20 and A = 21. Therefore A = 20 + 1</p>
+                    <p>A * B = (20 + 1) * 20</p>
+                    <p>A * B = 20<sup>2</sup> + 20 = 400 + 20 = 420</p>
+                    <p style="font-weight:bold;">If the numbers have a difference of 2:</p>
+                    <p>If A = B + 2 then A * B = (B + 2) * B = B<sup>2</sup> + 2B.</p>
+                    <p>A = 22 and B = 20, therefore A = 20 + 2</p>
+                    <p>A * B = (20 + 2) * 20 = 20<sup>2</sup> + 2(20) = 400 + 40 = 440.</p>
+            </div>
+            <div id="popupContent5" style="display:none;">
+                <h3>Squares</h3>
+                <p>In this example, the number that is being squared will be represented by the variable A.</p>
+                <p>Your goal: Solve for A<sup>2</sup>.</p>
+                <p>Remember the equation <span style="color:grey;">(A + B) * (A - B) = A<sup>2</sup> - B<sup>2</sup></span></p>
+                <p>To get <span style="color:red;">A<sup>2</sup></span>, you must add <span style="color:purple;">B<sup>2</sup></span> to both sides of the equation, as shown below: </p>
+                <p><span style="color:grey;">(A + B) * (A - B)</span> + <span style="color:purple;">B<sup>2</sup></span> = <span style="color:grey;">A<sup>2</sup> - B<sup>2</sup></span> + <span style="color:purple;">B<sup>2</sup></span> = <span style="color:red;">A<sup>2</sup></span></p>
+                <p>Now for the exciting stuff... how does this equation work for YOU?</p>
+                <p>Round A to the nearest 10 (ex. 20, 30, 40, etc) so that your new number is either (A + B) or (A - B).</p>
+                <p>Multiply (A + B) * (A - B). Add B<sup>2</sup> to this number. This gives you A<sup>2</sup>.</p>
+                <p>For example, 36<sup>2</sup> is harder to solve than (36 + 4) * (36 - 4). </p>
+                <p><span style="color:purple;">(A + B)</span> * <span style="color:blue;">(A - B)</span> = <span style="color:purple;">(36 + 4)</span> * <span style="color:blue;">(36 - 4)</span></p>
+                <p>A = 36, B = 4</p>
+                <p>Multiply (36 + 4)(36 - 4) = 40*32 = 1280</p>
+                <p>B<sup>2</sup> = 4<sup>2</sup> = 16</p>
+                <p>Add B<sup>2</sup> to (A + B) * (A - B) to find A<sup>2</sup>. (This is proven above.)</p>
+                <p>16 + 1280 = <span style="color:red;">1296</span></p>
+            </div>
+            <div id="popupContent6" style="display:none;">
+                <h3>Squares close to the nearest ten</h3>
+                <p>If you know A<sup>2</sup>, then you can get (A + 1)<sup>2</sup> by adding 2A + 1 to A<sup>2</sup>.</p>
+                <p>Therefore, to get (A - 1)<sup>2</sup>, you simply subtract 2A + 1 from A<sup>2</sup>.</p>
+                <p>Check out this pattern:</p>
+                <p>5<sup>2</sup> = <span style="color:purple;">5 + 5 + 5 + 5 + 5</span> = 5 sets of 5</p>
+                <p>6 * 5 = 6 sets of 5</p>
+                <p><span style="color:purple;">5 + 5 + 5 + 5 + 5</span> <span style="color:orange;">+ 5</span></p>
+                <p>OR</p>
+                <p>6 * 5 = 5 sets of 6</p>
+                <p><span style="color:purple;">5 + 5 + 5 + 5 + 5 + 5</span> = <span style="color:blue;">6 + 6 + 6 + 6 + 6</span></p>
+                <p>6 * 6 = 6 sets of 6</p>
+                <p><span style="color:blue;">6 + 6 + 6 + 6 + 6</span> <span style="color:red;">+ 6</span></p>
+                <p>6 * 6 = 5 * 5 <span style="color:orange;">+ 5</span> <span style="color:red;">+ 6</span></p>
+                <p>Similarly, 39<sup>2</sup> = 40<sup>2</sup> - 2(39) - 1.</p>
+                <p>If you want to find 51<sup>2</sup>, you just solve 50<sup>2</sup> and add 2(50) + 1.</p>
+                <p>51<sup>2</sup> = 50<sup>2</sup> + 2(50) + 1 = 2601.</p>
+            </div>
+            <div id="popupContent7" style="display:none;">
+                <h3>Numbers that end in 1, 2, 8 or 9</h3>
+                <p style="font-weight:bold;">Ends in 1:</p>
+                <p>A is a number that ends in 1. (A - 1) therefore ends in 0.</p>
+                <p>B is any number. Remember that you are trying to solve for A * B.</p>
+                <p>(A - 1) * B = A * B - B. So you can add B to both sides and derive:</p>
+                <p>(A - 1) * B + B = A * B</p>
+                <p>For example, A represents 31 and B is 55.</p>
+                <p>A * B = (31 - 1) * 55 + 55.</p>
+                <p>30 * 55 + 55 = 1650 + 55 = 1705</p>
+                <p style="font-weight:bold;">Ends in 2:</p>
+                <p>(A - 2) ends in 0.</p>
+                <p>Expand (A - 2) * B to get A * B - 2B.</p>
+                <p>Add 2B to both sides and derive (A - 2) * B + 2B = A * B - 2B + 2B.</p>
+                <p>A * B = (A - 2) * B + 2B</p>
+                <p>If A = 32 and B = 45, then (32 - 2) * 45 + 45 * 2 = 30 * 45 + 90 = 1350 + 90 = 1440</p>
+                <p style="font-weight:bold;">Ends in 8 or 9:</p>
+                <p>The converse of the above is also true.</p>
+                <p>(A + 1) ends in 0. (A + 1) * B expands to A * B + B.</p>
+                <p>A * B = (A + 1) * B - B.</p>
+                <p>For example, 39 * 63 = (39 + 1) * 63 - 63 = (40) * 63 - 63 = 2520 - 63 = 2457.</p>
+            </div>
+            <div id="popupContent8" style="display:none;">
+                <h3>Numbers that end in 0</h3>
+                <p>If A is a multiple of 10 (10, 20, 30, etc), then A / 10 is an integer.</p>
+                <p>A * B = A / 10 * B * 10.</p>
+                <p>40 * 55 = (40 / 10) * 55 * 10 = 4 * 55 * 10 = 220 * 10 = 2200</p>
+            </div>
+            <input type="button" id="submit" style="width:auto;height:auto;" value="OK" onclick="closePop()" /> </div>
+    </div>
+</body>
+</html>
